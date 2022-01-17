@@ -1,5 +1,7 @@
 .App {
   padding: 0;
+  display: flex;
+  flex-direction: row;
 }
 
 .App-logo {
@@ -45,4 +47,19 @@ label {
   width: 100px;
   text-align: left;
   padding-top: 20px;
+}
+
+th,
+td {
+  border: 1px solid black;
+  text-align: left;
+}
+h1 {
+  text-align: center;
+}
+
+table {
+  float: right;
+  padding-left: 150px;
+  margin-right: auto;
 }
