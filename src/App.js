@@ -12,6 +12,7 @@ class App extends React.Component {
       pass: "",
       conformPass: "",
       dob: "",
+      update: false,
       errors: [],
       items: [],
     };
@@ -31,6 +32,16 @@ class App extends React.Component {
   };
   handleDOB = (e) => {
     this.setState({ dob: e.target.value });
+  };
+
+  handleUpdate = (email) => {
+    var temp = this.state.items.filter((item) => item.email === email);
+    console.log(temp);
+  };
+
+  handleDelete = (email) => {
+    const items = this.state.items.filter((item) => item.email !== email);
+    this.setState({ items: items });
   };
   handleSubmit = (e) => {
     e.preventDefault();
@@ -56,7 +67,6 @@ class App extends React.Component {
       pass: "",
       conformPass: "",
       dob: "",
-      valid: true,
     });
   };
 
@@ -74,7 +84,22 @@ class App extends React.Component {
             handlePass={this.handlePass}
             handleConformPass={this.handleConformPass}
           />
-          <List users={this.state.items} />
+          {this.state.update && (
+            <Form
+              data={this.temp}
+              handleSubmit={this.handleSubmit}
+              handleName={this.handleName}
+              handleEmail={this.handleEmail}
+              handleDOB={this.handleDOB}
+              handlePass={this.handlePass}
+              handleConformPass={this.handleConformPass}
+            />
+          )}
+          <List
+            users={this.state.items}
+            handleDelete={this.handleDelete}
+            handleUpdate={this.handleUpdate}
+          />
         </div>
       </div>
     );
